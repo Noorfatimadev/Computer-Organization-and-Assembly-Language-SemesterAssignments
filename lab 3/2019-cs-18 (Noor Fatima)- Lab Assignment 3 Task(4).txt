@@ -1,0 +1,32 @@
+INCLUDE Irvine32.inc
+
+.data 
+ string byte    "abcd" 
+ integer byte   1,2,3,4,5
+ duparr byte 2 DUP( 1,2,3) 
+  output1 byte "Size of integer array",0
+  output2 byte " || Size of string array",0
+    output3 byte " || Size of DUP array",0
+.code
+main PROC
+  mov eax, sizeof integer
+mov edx , offset output1
+call writestring
+ call writeint
+
+   mov eax, sizeof string
+mov edx , offset output2
+call writestring
+ call writeint
+
+   mov eax, sizeof duparr
+mov edx , offset output3
+call writestring
+ call writeint
+
+ exit
+
+
+ main ENDP
+ END main
+

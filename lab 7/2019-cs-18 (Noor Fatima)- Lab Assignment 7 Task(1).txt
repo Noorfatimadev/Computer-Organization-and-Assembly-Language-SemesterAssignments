@@ -1,0 +1,59 @@
+INCLUDE Irvine32.inc
+.data
+array dword 60,40,50,20,5
+arrLen dword ? 
+  
+maxi byte " Maximum : ",0
+mini byte " || Minimum : ",0
+min dword 5
+max dword 5
+.code
+max_min proto, array : ptr dword   
+main PROC 
+mov eax, lengthof array
+mov arrLen, eax
+ 
+invoke max_min  , Addr array  
+  exit
+main ENDP
+max_min proc, ar:ptr dword 
+ 
+mov  esi, ar
+mov eax ,  0
+ mov ecx,5
+
+loop_:
+mov eax ,  0
+mov eax , [esi]
+ add esi,4
+ 
+cmp eax,min
+jl ch_min
+back:
+cmp eax,max
+jg ch_max
+ 
+ LOOP loop_
+
+
+ch_min:
+mov min ,eax 
+jmp back
+
+ch_max:
+mov max ,eax
+  
+ 
+
+
+ mov edx, offset maxi
+ call writestring
+ mov eax ,max
+ call writeint
+  mov edx, offset mini
+ call writestring
+ mov eax ,min
+ call writeint
+ret
+max_min ENDP
+END main

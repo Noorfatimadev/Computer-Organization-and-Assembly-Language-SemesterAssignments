@@ -1,0 +1,30 @@
+;********LAb task1********
+
+ INCLUDE Irvine32.inc
+
+.386
+.model flat,stdcall
+.stack 4096
+ExitProcess proto,dwExitCode:dword
+
+ .data
+ a dword -7
+ b dword 5
+x dword 9
+ .code
+ main PROC
+ 
+ add a ,10 
+ add b, 6
+ mov eax, b 
+ mul a
+ 
+ mul  x
+ 
+ call writeint
+ call readint
+ exit
+
+	invoke ExitProcess,0
+ main endp
+ end main

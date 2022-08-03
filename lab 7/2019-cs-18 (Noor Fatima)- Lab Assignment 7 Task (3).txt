@@ -1,0 +1,45 @@
+INCLUDE Irvine32.inc
+.data
+var  dword 5 
+ now dword ?
+ vara byte " var:",0
+fact byte " Factorial:",0
+ mut byte "*",0
+
+.code
+factorial proto, var: dword
+main PROC
+  
+invoke factorial,var 
+ 
+exit
+main ENDP
+factorial proc, v1: dword 
+ 
+;displaying variable 
+ mov edx , offset vara
+ call writestring
+  mov eax , v1
+call writeint
+   mov ebx , 0
+
+;factorial function
+mov eax , v1 ; eax=5
+ dec v1 ;v1=4
+ mul v1  ;eax=eax*v1
+mov ecx ,3 ;loop will run v1 times
+loop_: 
+   dec v1
+ mul v1  ;eax=eax*v1
+  mov ebx ,eax
+ LOOP loop_
+  
+
+ ;displaying factorial
+  mov edx , offset fact
+ call writestring 
+ mov eax , ebx 
+call writeint
+ ret
+factorial  ENDP
+END main

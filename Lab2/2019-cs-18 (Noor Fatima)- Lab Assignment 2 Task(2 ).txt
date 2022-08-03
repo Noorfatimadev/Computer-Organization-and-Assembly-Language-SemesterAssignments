@@ -1,0 +1,30 @@
+TITLE MASM Template		 
+
+;********Lab task 2********
+
+
+INCLUDE Irvine32.inc
+
+.386
+.model flat,stdcall
+.stack 4096
+ExitProcess proto,dwExitCode:dword
+
+ .data
+ input1 BYTE "Printing a String   " ,0
+ 
+
+ .code
+ main PROC
+ 
+ mov edx, offset input1
+
+ call writestring
+
+ exit
+
+ main ENDP
+ END main
+
+ 
+ 

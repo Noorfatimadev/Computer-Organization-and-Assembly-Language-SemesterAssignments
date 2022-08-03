@@ -1,0 +1,56 @@
+INCLUDE Irvine32.inc
+.data
+star Byte "*",0
+ count dword 1
+ store dword 0 
+.code
+main PROC
+ mov ecx ,count
+Loop1: 
+mov edx, OFFSET star
+call WriteString 
+ loop Loop1
+
+ call crlf
+
+ inc count
+  mov ecx ,count
+Loop2: 
+mov edx, OFFSET star
+call WriteString
+loop Loop2
+
+
+ call crlf
+
+ inc count
+  mov ecx ,count
+Loop3: 
+mov edx, OFFSET star
+call WriteString
+loop Loop3
+
+
+ call crlf
+
+ inc count
+  mov ecx ,count
+Loop4: 
+mov edx, OFFSET star
+call WriteString
+loop Loop4
+
+
+ call crlf
+
+ inc count
+  mov ecx ,count
+Loop5: 
+mov edx, OFFSET star
+call WriteString
+loop Loop5
+
+
+exit
+main ENDP
+END main

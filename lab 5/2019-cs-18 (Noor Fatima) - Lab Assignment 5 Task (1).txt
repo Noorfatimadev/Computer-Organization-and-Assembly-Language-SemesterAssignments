@@ -1,0 +1,48 @@
+INCLUDE Irvine32.inc
+.data
+ point dword 100
+om dword ?
+eom byte "Enter your obtained marks ",0
+etm byte "Enter your total marks ",0
+tm dword ?
+ 
+halfm dword ?
+pass  byte "Pass",0
+fail byte "Fail",0
+t dword 2
+.code
+main PROC
+mov edx, offset eom
+call writestring
+call readint
+mov om , eax
+mov edx, offset etm
+call writestring
+call readint
+mov tm , eax
+ 
+mov eax , om
+mul point
+div tm
+mov om , eax
+
+
+mov eax , tm
+div t
+mov halfm,eax
+mov eax , om
+cmp eax, halfm
+jg L1
+jl L2
+
+       L1:
+          mov edx, offset pass
+           call WriteString
+             exit
+      L2:
+         mov edx, offset fail
+         call WriteString
+          exit
+  exit
+main ENDP
+END main

@@ -1,0 +1,98 @@
+INCLUDE Irvine32.inc
+.data
+num1 dword ?
+num2 dword ?
+no1 byte " ENTER Number 1 : ",0
+no2 byte " ENTER Number 2 : ",0
+menu byte "Enter ||->1 for 'Addition'||-> 2 for 'Substraction' ||->3 for 'Multiplication'||->4 for 'Division' ||>>>> ",0h,0
+ remain dword ?
+ operator dword ?
+subing byte "Substraction: ",0
+ ading byte " Addition: ",0
+ muling byte " Multiplication :  ",0
+ rem byte " Remainder : ",0
+ diving byte " Division:" , 0
+.code
+operation proto, num1: dword ,num2: dword , operator:dword
+main PROC
+;number1
+   mov edx , offset no1
+ call writestring
+ call readint
+ mov num1 , eax
+ ;number2  
+   mov edx , offset no2
+ call writestring
+ call readint
+ mov num2 , eax
+ ;operator
+    mov edx , offset menu
+ call writestring
+ call readint
+ mov operator , eax
+
+invoke operation ,num1,num2,operator
+ 
+exit
+main ENDP
+operation proc, n1:dword , n2:dword , op:dword
+ 
+ cmp op ,1
+ je addition
+
+  cmp op ,2
+ je substraction
+
+  cmp op ,3
+ je multiply
+
+  cmp op ,4
+ je division
+ 
+addition:
+mov eax , 0
+mov eax , n1
+ add eax,n2
+ 
+     mov edx , offset ading
+ call writestring
+ call writeint
+ ret
+
+ substraction:
+ mov eax , 0
+ mov eax , n1
+  sub eax,n2
+ 
+     mov edx , offset subing
+ call writestring
+ call writeint
+ ret
+
+ multiply:
+ mov eax , 0
+ mov eax , n1
+ mul n2
+mov edx , offset muling
+ call writestring
+ call writeint
+ ret
+
+division:
+mov eax , 0
+ mov eax , n1
+ sub edx , edx
+div n2
+mov remain,edx
+mov edx , offset diving
+ call writestring
+ call writeint
+ mov edx , offset rem
+ call writestring
+ mov eax ,remain
+ call writeint
+ ret
+
+
+operation  ENDP
+END main

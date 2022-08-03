@@ -1,0 +1,30 @@
+INCLUDE Irvine32.inc
+.data
+ar  dword 2,3,1,5,4
+arLen dword ?
+min  dword 1
+.code
+ 
+main PROC
+mov eax, lengthof ar
+mov arLen, eax
+  
+mov esi,ar ; address of the array
+mov ecx,arLen ; size of the array
+mov eax,0 ; set the sum to zero
+
+min_check:
+mov eax, [esi]
+  call writeint 
+ 
+ cmp eax, min
+ jl mix
+  
+ mix: 
+ mov min , eax
+  mov eax, min
+   call writeint 
+
+LOOP min_check
+  mov eax, min
+main ENDP

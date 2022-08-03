@@ -1,0 +1,56 @@
+INCLUDE Irvine32.inc
+.data
+number dword ?
+ente byte " ENTER a number : ",0
+ now byte ?
+
+ xx byte "((((((((",0
+ vara byte " Number:",0
+ eve byte " EVEN ",0
+ od  byte " ODD ",0
+ line byte "))))))))" , 0
+.code
+even_or_odd proto, number: dword
+main PROC
+   mov edx , offset ente
+ call writestring
+ call readint
+ mov number , eax
+invoke even_or_odd ,number 
+ 
+exit
+main ENDP
+ even_or_odd proc, v: dword 
+ mov eax , v
+ mov edx , offset xx
+ call writestring
+sub edx , edx
+ mov ebx , 2
+ div ebx
+  
+ mov eax , edx
+ 
+ cmp eax ,0
+ 
+jne isodd
+ je iseven
+ 
+ isodd: 
+  mov edx , offset od  
+  call writestring
+ mov edx , offset line  
+  call writestring
+  ret
+  ;;;;;;;;;;;;;;
+iseven: 
+ mov edx , offset eve
+   call writestring
+    mov edx , offset line  
+  call writestring
+ ret
+
+
+
+
+even_or_odd  ENDP
+END main

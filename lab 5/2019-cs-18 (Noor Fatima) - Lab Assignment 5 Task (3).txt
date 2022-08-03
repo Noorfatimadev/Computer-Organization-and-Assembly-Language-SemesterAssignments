@@ -1,0 +1,31 @@
+INCLUDE Irvine32.inc
+.data
+arr byte "All letters in capital form except 'm': ",0
+string byte  "a","b","c","d","e","f","g","h","i","j","k","l","m","n","o", "p","q","r","s","t","u","v","w","x","y","z",0
+ .code
+ main PROC
+    mov edx , offset arr
+ call writestring
+ 
+mov ebx, offset string
+L1:
+ mov eax , 0
+mov al,byte ptr [ebx]
+cmp al , "m"
+je   L2
+AND al, 11011111b
+ L2:
+  mov ecx ,1
+ call writechar   
+ loop L2
+
+inc ebx
+ mov ecx, lengthof string
+
+ 
+loop L1
+
+
+exit
+main ENDP
+END main

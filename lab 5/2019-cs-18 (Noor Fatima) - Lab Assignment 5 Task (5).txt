@@ -1,0 +1,29 @@
+INCLUDE Irvine32.inc
+.data
+arr byte "All letters in small form except 'O': ",0
+string byte  "A","B","C","D","E","F","G","H","I","J","K","L","M","N","O", "P","Q","R","S","T","U","V","W","X","Y","Z",0
+ .code
+ main PROC
+   mov edx , offset arr
+ call writestring
+
+ mov ecx, lengthof string
+mov ebx, offset string
+L1: 
+mov al,byte ptr [ebx]
+cmp al , "O"
+je   L2
+OR al, 00100000b
+                     L2:
+                     mov ecx ,1
+                     call writechar   
+                     loop L2
+                      
+                    
+ 
+inc ebx
+loop L1
+ 
+exit
+main ENDP
+END main

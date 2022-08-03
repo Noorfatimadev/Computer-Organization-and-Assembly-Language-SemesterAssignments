@@ -1,0 +1,55 @@
+INCLUDE Irvine32.inc
+.data
+num dword 0
+ count dword 1
+ store dword 0 
+.code
+main PROC
+ mov ecx ,count
+Loop1: 
+mov eax, num
+call Writeint 
+inc num
+
+ loop Loop1
+
+ call crlf
+
+ inc count
+  mov ecx ,count
+Loop2: 
+mov eax,  num
+call Writeint 
+inc num
+loop Loop2
+
+
+ call crlf
+
+ inc count
+  mov ecx ,count
+Loop3: 
+mov eax,   num
+call Writeint 
+inc num
+loop Loop3
+
+
+ call crlf
+
+ inc count
+  mov ecx ,count
+Loop4: 
+mov eax,  num
+call Writeint 
+inc num
+loop Loop4
+
+
+ call crlf
+ 
+
+
+exit
+main ENDP
+END main

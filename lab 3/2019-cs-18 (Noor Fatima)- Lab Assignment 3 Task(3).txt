@@ -1,0 +1,39 @@
+INCLUDE Irvine32.inc
+
+.data 
+ 
+ duparr byte 2 DUP( 1,2,3) 
+ 
+.code
+main PROC
+ 
+   mov eax, 0
+ mov al , duparr+0
+ call writeint
+
+   mov eax, 0
+ mov al , duparr+1
+ call writeint
+
+   mov eax, 0
+ mov al , duparr+2
+ call writeint
+
+   mov eax, 0
+ mov al , duparr+3
+ call writeint
+
+   mov eax, 0
+ mov al , duparr+4
+ call writeint
+
+   mov eax, 0
+ mov al , duparr+5
+ call writeint
+
+ exit
+
+
+ main ENDP
+ END main
+
